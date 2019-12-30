@@ -1,0 +1,70 @@
+.App {
+  text-align: center;
+  background-image: url("../img/Homebackground.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+.desktop-register {
+  bottom: 5%;
+  position: absolute;
+}
+.mobile-register {
+  display: none;
+}
+
+.register-button{
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #83F14B;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  padding: 15%;
+}
+
+@media (max-width: 823px)
+{
+  .App{
+    width: 100%;
+    background-image: url("../img/Mobilehome2.svg");
+  }
+  .App-description{
+    display: none;
+  }
+
+  .desktop-register{
+    display: none;
+  }
+
+  .mobile-register{
+    bottom: 5%;
+    position: absolute;
+    display: block;
+  }
+
+  .register-button{
+    padding: 10%;
+  }
+
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}

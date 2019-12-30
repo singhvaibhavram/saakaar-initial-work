@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/saakar-work/static/css/main.8ab60814.chunk.css",
+    "main.js": "/saakar-work/static/js/main.e0b3886e.chunk.js",
+    "main.js.map": "/saakar-work/static/js/main.e0b3886e.chunk.js.map",
+    "runtime-main.js": "/saakar-work/static/js/runtime-main.32fb2626.js",
+    "runtime-main.js.map": "/saakar-work/static/js/runtime-main.32fb2626.js.map",
+    "static/js/2.df4dfee7.chunk.js": "/saakar-work/static/js/2.df4dfee7.chunk.js",
+    "static/js/2.df4dfee7.chunk.js.map": "/saakar-work/static/js/2.df4dfee7.chunk.js.map",
+    "index.html": "/saakar-work/index.html",
+    "precache-manifest.e6c18ff8596dbf2a9747986f05021c35.js": "/saakar-work/precache-manifest.e6c18ff8596dbf2a9747986f05021c35.js",
+    "service-worker.js": "/saakar-work/service-worker.js",
+    "static/css/main.8ab60814.chunk.css.map": "/saakar-work/static/css/main.8ab60814.chunk.css.map",
+    "static/js/2.df4dfee7.chunk.js.LICENSE": "/saakar-work/static/js/2.df4dfee7.chunk.js.LICENSE",
+    "static/media/App.css": "/saakar-work/static/media/homebackground.8b31c019.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.32fb2626.js",
+    "static/js/2.df4dfee7.chunk.js",
+    "static/css/main.8ab60814.chunk.css",
+    "static/js/main.e0b3886e.chunk.js"
+  ]
+}
