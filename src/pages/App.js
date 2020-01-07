@@ -4,8 +4,7 @@ import '../assets/css/App.css';
 class App extends React.Component{
     render() {
         function handleClick(e) {
-            e.preventDefault();
-            alert("Clicked")
+            window.open('/event')
         }
         return (
             <div className="App">

@@ -37,7 +37,7 @@
 {
   .App{
     width: 100%;
-    background-image: url("../img/Mobilehome2.svg");
+    background-image: url("../img/saakar new final copy-01-01.png");
   }
   .App-description{
     display: none;
@@ -55,6 +55,7 @@
 
   .register-button{
     padding: 10%;
+    font-size: 12pt;
   }
 
 }
