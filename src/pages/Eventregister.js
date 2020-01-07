@@ -3,17 +3,24 @@ import '../assets/css/eventform.css'
 
 class Eventregister extends React.Component{
 
+    async componentDidMount() {
+        const url = "http://49d3e244.ngrok.io/v0/city"
+        const response = await fetch(url)
+        const cityData = await response.json()
+        this.setState({cities: cityData})
+    }
+
     state = {
         fname: "",
         lname: "",
         phnumber: "",
-        city: "",
+        cities: [],
         age: "",
         kids: "",
     }
 
     validate = () =>{
-        if(this.state.phnumber.length != 10){
+        if(this.state.phnumber.length !== 10){
             alert("Phone Number should be 10 digits")
         }
 
@@ -25,9 +32,7 @@ class Eventregister extends React.Component{
             alert("Last Name Cannot be blank")
         }
 
-        if(!this.state.city){
-            alert("City Cannot be blank")
-        }
+
 
         if(!this.state.age){
             alert("Age Cannot be blank")
@@ -72,7 +77,12 @@ class Eventregister extends React.Component{
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" value={this.state.city} onChange={(event) => this.handleChange(event, "city")} placeholder={"City"}/>
+                                    <input type="text" list="cityList" placeholder={"City"}/>
+                                    <datalist id="cityList">
+                                        {this.state.cities.map(city => (
+                                            <option>{city.english}  {city.hindi}</option>
+                                        ))}
+                                    </datalist>
                                 </td>
                                 <td>
                                     <input type="number" value={this.state.age} onChange={(event) => this.handleChange(event, "age")} placeholder={"Age"}/>

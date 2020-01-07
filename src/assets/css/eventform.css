@@ -1,4 +1,5 @@
 .eventForm{
+
 }
 
 .Desktop{
@@ -35,6 +36,10 @@ input{
     background-color: #ffffff;
 }
 
+option{
+    background-color: white;
+}
+
 td{
     padding: 0.5%;
 }
@@ -47,7 +52,7 @@ table{
     border-spacing: 7px 30px;
 }
 
-button{
+button.submit-button{
     margin-left: 35%;
 }
 
