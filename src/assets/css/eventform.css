@@ -23,9 +23,6 @@
         margin-left: 3%;
 
     }
-    .submit-button{
-
-    }
 }
 
 input{
@@ -34,6 +31,15 @@ input{
     border-radius: 4px;
     box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.16);
     background-color: #ffffff;
+}
+
+input.LastName{
+    width: 120px;
+    height: 20px;
+}
+input.Age{
+    width: 100px;
+    height: 20px;
 }
 
 option{
