@@ -50,7 +50,25 @@ class Eventregister extends React.Component{
     handleSubmit = () => {
         const isValid = this.validate()
         if(isValid) {
-            alert("Thankyou for registering for the event!!")
+            var data = JSON.stringify({
+                              "first_name": this.state.fname,
+                              "last_name": this.state.lname,
+                              "mobile_number": this.state.phnumber,
+                              "city_id": this.state.cityId,
+                              "age": this.state.age,
+                              "kids": this.state.kids
+                            });
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.addEventListener("readystatechange", function () {
+              if (this.readyState === 4) {
+                alert(this.responseText);
+              }
+            });
+            xhr.open("POST", "http://45eadb93.ngrok.io/v0/register");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Host", "45eadb93.ngrok.io");
+            xhr.send(data);
         }
     }
 
@@ -77,7 +95,7 @@ class Eventregister extends React.Component{
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" list="cityList" placeholder={"City"}/>
+                                    <input value={this.state.cityId} type="text" list="cityList" placeholder={"City"}/>
                                     <datalist id="cityList">
                                         {this.state.cities.map(city => (
                                             <option>{city.english}  {city.hindi}</option>
