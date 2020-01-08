@@ -82,20 +82,20 @@ class Eventregister extends React.Component{
                         <table>
                             <tr>
                                 <td>
-                                    <input type="text" value={this.state.fname} onChange={(event) => this.handleChange(event, "fname")} placeholder={"First Name"}/>
+                                    <input type="text" name={"first_name"} value={this.state.fname} onChange={(event) => this.handleChange(event, "fname")} placeholder={"First Name"}/>
                                 </td>
                                 <td>
-                                    <input type="text" value={this.state.lname} onChange={(event) => this.handleChange(event, "lname")} placeholder={"Last Name"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="number" value={this.state.phnumber} onChange={(event) => this.handleChange(event, "phnumber")} placeholder={"Phone Number"}/>
+                                    <input type="text" name={"last_name"} value={this.state.lname} onChange={(event) => this.handleChange(event, "lname")} placeholder={"Last Name"}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input value={this.state.cityId} type="text" list="cityList" placeholder={"City"}/>
+                                    <input type="number" name={"mobile_number"} value={this.state.phnumber} onChange={(event) => this.handleChange(event, "phnumber")} placeholder={"Phone Number"}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input value={this.state.cityId} type="text" name={"city_id"} list="cityList" placeholder={"City"}/>
                                     <datalist id="cityList">
                                         {this.state.cities.map(city => (
                                             <option>{city.english}  {city.hindi}</option>
@@ -103,12 +103,12 @@ class Eventregister extends React.Component{
                                     </datalist>
                                 </td>
                                 <td>
-                                    <input type="number" value={this.state.age} onChange={(event) => this.handleChange(event, "age")} placeholder={"Age"}/>
+                                    <input type="number" name={"age"} value={this.state.age} onChange={(event) => this.handleChange(event, "age")} placeholder={"Age"}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" value={this.state.kids} onChange={(event) => this.handleChange(event, "kids")} placeholder={"Kids"}/>
+                                    <input type="number" name={"kids"} value={this.state.kids} onChange={(event) => this.handleChange(event, "kids")} placeholder={"Kids"}/>
                                 </td>
                             </tr>
                         </table>
