@@ -87,7 +87,43 @@ class Eventregister extends React.Component{
     render() {
         return(
             <div className="eventForm">
-                <div className="Desktop">Hello Desktop
+                <div className="Desktop">
+                    <form onSubmit={this.handleSubmit}>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" name={"first_name"} value={this.state.fname} onChange={(event) => this.handleChange(event, "fname")} placeholder={"First Name"}/>
+                                </td>
+                                <td>
+                                    <input type="text" className={"LastName"} name={"last_name"} value={this.state.lname} onChange={(event) => this.handleChange(event, "lname")} placeholder={"Last Name"}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="number" name={"mobile_number"} value={this.state.phnumber} onChange={(event) => this.handleChange(event, "phnumber")} placeholder={"Phone Number"}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name={"city_id"} list="cityList" placeholder={"City"}/>
+                                    <datalist id="cityList">
+                                        {this.state.cities.map(city => (
+                                            <option>{city.english} {city.hindi}</option>
+                                        ))}
+                                    </datalist>
+                                </td>
+                                <td>
+                                    <input type="number" name={"age"} className={"Age"} value={this.state.age} onChange={(event) => this.handleChange(event, "age")} placeholder={"Age"}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="number" name={"kids"} value={this.state.kids} onChange={(event) => this.handleChange(event, "kids")} placeholder={"Kids"}/>
+                                </td>
+                            </tr>
+                        </table>
+                        <button className="submit-button" type="submit">Submit</button>
+                    </form>
                 </div>
                 <div className="Mobile">
                     <form onSubmit={this.handleSubmit}>
