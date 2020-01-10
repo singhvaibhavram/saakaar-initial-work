@@ -146,7 +146,7 @@ class Eventregister extends React.Component{
                                     <input type="text" name={"city_id"} list="cityList" placeholder={"City"}/>
                                     <datalist id="cityList">
                                         {this.state.cities.map(city => (
-                                            <option>{city.english} {city.hindi}</option>
+                                            <option>{city.english}/{city.hindi}</option>
                                         ))}
                                     </datalist>
                                 </td>
