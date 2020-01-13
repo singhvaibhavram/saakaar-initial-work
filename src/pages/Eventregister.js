@@ -1,24 +1,56 @@
 import React from "react";
-import '../assets/css/eventform.css'
+import superagent from "superagent";
+import '../assets/css/eventform.css';
+import Select from 'react-select';
+import { Form, Button, Row, Col, ToggleButtonGroup, ToggleButton, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { makeStyles } from '@material-ui/core/styles';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
+
+let isLoadingExternally = false;
 
 class Eventregister extends React.Component{
 
-    async componentDidMount() {
-        const url = " http://4950d5b1.ngrok.io/v0/city"
-        const response = await fetch(url)
-        const cityData = await response.json()
-        this.setState({cities: cityData})
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            fname: "",
+            lname: "",
+            phnumber: "",
+            cities: [],
+            age: "",
+            kids: "",
+            cityId: "",
+            language : "english"
+        }
     }
 
-    state = {
-        fname: "",
-        lname: "",
-        phnumber: "",
-        cities: [],
-        age: "",
-        kids: "",
-        cityId: "",
+     componentDidMount() {
+         isLoadingExternally = true;
+         superagent
+             .get("https://api.saakaarcommunity.com/v0/city")
+             .end((err, res) => {
+                 if(!err){
+                     console.log(res);
+                     this.setState({
+                         cities: res.body
+                     }, () => {
+                         isLoadingExternally = false;
+                     });
+                 } else{
+                     isLoadingExternally = false;
+                 }
+             });
     }
+
 
     validate = () =>{
         if(this.state.phnumber.length !== 10){
@@ -36,8 +68,6 @@ class Eventregister extends React.Component{
             return false;
         }
 
-
-
         if(!this.state.age){
             alert("Age Cannot be blank")
             return false;
@@ -52,82 +82,162 @@ class Eventregister extends React.Component{
     }
 
     handleChange = (event, fieldName) => {
-        console.log(fieldName)
-        this.setState({[fieldName]: event.target.value})
         console.log(event)
+        if(fieldName === "cityId"){
+            this.setState({[fieldName]: event.ID});
+        }else{
+            this.setState({[fieldName]: event.target.value});
+        }
+
     }
 
     handleSubmit = (e) => {
         const isValid = this.validate()
         if(isValid) {
             e.preventDefault();
-            var data = JSON.stringify({
-                              "first_name": this.state.fname,
-                              "last_name": this.state.lname,
-                              "mobile_number": this.state.phnumber,
-                              "city_id": "1",
-                              "age": this.state.age,
-                              "kids": this.state.kids
-                            });
-            console.log(data)
-            var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-            xhr.addEventListener("readystatechange", function () {
-              if (this.readyState === 4) {
-                alert(this.responseText);
-              }
-            });
-            xhr.open("POST", " http://4950d5b1.ngrok.io/v0/register");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("Host", "45eadb93.ngrok.io");
-            xhr.send(data);
+            superagent
+                .post("https://api.saakaarcommunity.com/v0/register")
+                .send({"first_name": this.state.fname, "last_name": this.state.lname,"mobile_number": this.state.phnumber,"city_id": this.state.cityId,"age": this.state.age,"kids": this.state.kids})
+                .set('accept', 'json')
+                .set('access-Control-Allow-Origin', '*')
+                .end((err, res) => {
+                   if(!err){
+                       console.log(res);
+                       alert("Successful");
+                   } else{
+                       console.error(err);
+                       alert("fail");
+                   }
+                });
         }
     }
 
     render() {
         return(
-            <div className="eventForm">
-                <div className="Desktop">Hello Desktop
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+
+                <div >
+                    <Typography component="h1" variant="h5">
+
+                    </Typography>
+                    <Typography component="h1" variant="h5">
+                        
+                    </Typography>
+                    <FormLabel component="legend">
+                        {this.state.language === 'hindi' ? "भाषा चुनें" : "Choose Language"}
+                    </FormLabel>
+                    <RadioGroup aria-label="language" name="language" value={this.state.language} onChange={(event) => this.handleChange(event, "language")}>
+                        <Row>
+                            <Col>
+                                <FormControlLabel value="english" control={<Radio />} label="English" />
+                            </Col>
+                            <Col>
+                                <FormControlLabel value="hindi" control={<Radio />} label="Hindi" />
+                            </Col>
+                        </Row>
+                    </RadioGroup>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="formFirstName">
+                                    <Form.Label>{this.state.language === 'hindi' ? "पहला नाम" : "First Name"}</Form.Label>
+                                    <Form.Control
+                                        name={"first_name"}
+                                        value={this.state.fname}
+                                        type="text"
+                                        placeholder={ this.state.language === 'hindi' ? "पहला नाम दर्ज करें" : "Enter First Name"}
+                                        onChange={(event) => this.handleChange(event, "fname")}
+                                    />
+
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId="formLastName">
+                                    <Form.Label>{this.state.language === 'hindi' ? "अंतिम नाम" : "Last Name"}</Form.Label>
+                                    <Form.Control
+                                        name={"first_name"}
+                                        value={this.state.lname}
+                                        type="text"
+                                        placeholder={ this.state.language === 'hindi' ? "अंतिम नाम दर्ज करें" : "Enter Last Name"}
+                                        onChange={(event) => this.handleChange(event, "lname")}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="formPhoneNumber">
+                                    <Form.Label>{this.state.language === 'hindi' ? "मोबाइल नंबर" : "Mobile Number"}</Form.Label>
+                                    <Form.Control
+                                        name={"phone_number"}
+                                        value={this.state.phnumber}
+                                        type="mobile"
+                                        placeholder={ this.state.language === 'hindi' ? "मोबाइल नंबर दर्ज करें" : "Enter Mobile Number"}
+                                        onChange={(event) => this.handleChange(event, "phnumber")}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="FormCity">
+                                    <Form.Label>{this.state.language === 'hindi' ? "शहर चुनें" : "Choose City"}</Form.Label>
+                                    <Select
+                                        getOptionLabel={this.state.language === 'hindi' ? ({ hindi }) => hindi : ({ english }) => english}
+                                        getOptionValue={({ ID }) => ID}
+                                        options={this.state.cities}
+                                        isLoading={isLoadingExternally}
+                                        onChange={(event) => this.handleChange(event, "cityId")}
+                                    />
+                                </Form.Group>
+                            </Col>
+
+                            <Col>
+                                <Form.Group controlId="formAge">
+                                    <Form.Label>{this.state.language === 'hindi' ? "आयु" : "Age"}</Form.Label>
+                                    <Form.Control
+                                        name={"age"}
+                                        value={this.state.age}
+                                        type="number"
+                                        placeholder={ this.state.language === 'hindi' ? "आयु दर्ज करें" : "Enter Age"}
+                                        onChange={(event) => this.handleChange(event, "age")}
+                                    />
+                                </Form.Group>
+                            </Col>
+
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="formKids">
+                                    <Form.Label>{this.state.language === 'hindi' ? "बच्चों की संख्या" : "No. of Kids"}</Form.Label>
+                                    <Form.Control
+                                        name={"kids"}
+                                        value={this.state.kids}
+                                        type="number"
+                                        placeholder={ this.state.language === 'hindi' ? "बच्चों की संख्या दर्ज करें" : "Enter No. of Kids"}
+                                        onChange={(event) => this.handleChange(event, "kids")}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+
+                            </Col>
+                        </Row>
+                        <Button variant="primary" type="submit">
+                            {this.state.language === 'hindi' ? "प्रस्तुत" : "Submit"}
+                        </Button>
+                    </Form>
                 </div>
-                <div className="Mobile">
-                    <form onSubmit={this.handleSubmit}>
-                        <table>
-                            <tr>
-                                <td>
-                                    <input type="text" name={"first_name"} value={this.state.fname} onChange={(event) => this.handleChange(event, "fname")} placeholder={"First Name"}/>
-                                </td>
-                                <td>
-                                    <input type="text" className={"LastName"} name={"last_name"} value={this.state.lname} onChange={(event) => this.handleChange(event, "lname")} placeholder={"Last Name"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="number" name={"mobile_number"} value={this.state.phnumber} onChange={(event) => this.handleChange(event, "phnumber")} placeholder={"Phone Number"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name={"city_id"} list="cityList" placeholder={"City"}/>
-                                    <datalist id="cityList">
-                                        {this.state.cities.map(city => (
-                                            <option>{city.english} {city.hindi}</option>
-                                        ))}
-                                    </datalist>
-                                </td>
-                                <td>
-                                    <input type="number" name={"age"} className={"Age"} value={this.state.age} onChange={(event) => this.handleChange(event, "age")} placeholder={"Age"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="number" name={"kids"} value={this.state.kids} onChange={(event) => this.handleChange(event, "kids")} placeholder={"Kids"}/>
-                                </td>
-                            </tr>
-                        </table>
-                        <button className="submit-button" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
+            </Container>
+
+
         );
     }
 }
