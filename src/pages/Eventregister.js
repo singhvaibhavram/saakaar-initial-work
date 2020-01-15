@@ -2,11 +2,10 @@ import React from "react";
 import superagent from "superagent";
 import '../assets/css/eventform.css';
 import Select from 'react-select';
-import { Form, Button, Row, Col, ToggleButtonGroup, ToggleButton, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { makeStyles } from '@material-ui/core/styles';
+
+import { Form, Button, Row, Col, ControlLabel } from "react-bootstrap";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,15 +21,8 @@ class Eventregister extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            fname: "",
-            lname: "",
-            phnumber: "",
-            cities: [],
-            age: "",
-            kids: "",
-            cityId: "",
-            language : "english"
-        }
+            fname: "", lname: "", phnumber: "", cities: [], age: "", kids: "", cityId: "", language : "english"
+        };
     }
 
      componentDidMount() {
@@ -79,7 +71,7 @@ class Eventregister extends React.Component{
         }
 
         return true;
-    }
+    };
 
     handleChange = (event, fieldName) => {
         console.log(event)
@@ -89,7 +81,7 @@ class Eventregister extends React.Component{
             this.setState({[fieldName]: event.target.value});
         }
 
-    }
+    };
 
     handleSubmit = (e) => {
         const isValid = this.validate()
@@ -102,15 +94,17 @@ class Eventregister extends React.Component{
                 .set('access-Control-Allow-Origin', '*')
                 .end((err, res) => {
                    if(!err){
-                       console.log(res);
-                       alert("Successful");
+                       alert("Registration Successful");
+                       this.state = {
+                           fname: "", lname: "", phnumber: "", age: "", kids: "", cityId: "", language : "english"
+                       };
                    } else{
                        console.error(err);
-                       alert("fail");
+                       alert("Registration failed");
                    }
                 });
         }
-    }
+    };
 
     render() {
         return(
@@ -122,7 +116,7 @@ class Eventregister extends React.Component{
 
                     </Typography>
                     <Typography component="h1" variant="h5">
-                        
+
                     </Typography>
                     <FormLabel component="legend">
                         {this.state.language === 'hindi' ? "भाषा चुनें" : "Choose Language"}
