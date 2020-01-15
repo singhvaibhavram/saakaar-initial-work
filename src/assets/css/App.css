@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url("../img/Homebackground.svg");
+  background-image: url("../img/homedesktop.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -9,7 +9,8 @@
 }
 
 .desktop-register {
-  bottom: 5%;
+  bottom: 25%;
+  left: 68%;
   position: absolute;
 }
 .mobile-register {
@@ -18,12 +19,12 @@
 
 .register-button{
   font-family: 'Roboto', sans-serif;
-  font-size: 11px;
+  font-size: 12pt;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
-  color: #83F14B;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: #38AA34;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -56,6 +57,23 @@
   .register-button{
     padding: 10%;
     font-size: 12pt;
+  }
+
+  .register-button{
+    font-family: 'Roboto', sans-serif;
+    font-size: 12pt;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #83F14B;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    padding: 15%;
   }
 
 }
