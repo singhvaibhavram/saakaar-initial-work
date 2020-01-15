@@ -23,6 +23,9 @@
         margin-left: 3%;
 
     }
+    button.submit-button{
+        margin-left: 35%;
+    }
 }
 
 input{
@@ -59,7 +62,7 @@ table{
 }
 
 button.submit-button{
-    margin-left: 35%;
+    margin-left: 10%;
 }
 
 .submit-button{
