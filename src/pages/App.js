@@ -1,9 +1,13 @@
 import React from 'react';
 import '../assets/css/App.css';
 
-class App extends React.Component{
+class App extends React.Component {
 
-    handleClick = (e) =>  {
+    constructor(props) {
+        super(props);
+    }
+
+    handleClick = (e) => {
         this.props.history.push('/event');
     };
 
@@ -14,12 +18,14 @@ class App extends React.Component{
                     <div className="mobile-register">
                         <button className="register-button"
                                 onClick={(event) => this.handleClick(event)}
-                        >Register</button>
+                        >Register
+                        </button>
                     </div>
                     <div className="desktop-register">
-                        <button  className="register-button"
-                                 onClick={(event) => this.handleClick(event)}
-                        >Register</button>
+                        <button className="register-button"
+                                onClick={(event) => this.handleClick(event)}
+                        >Register
+                        </button>
                     </div>
                 </header>
             </div>
