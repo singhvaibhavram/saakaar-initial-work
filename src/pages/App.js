@@ -17,14 +17,14 @@ class App extends React.Component {
                 <header className="App-header">
                     <div className="mobile-register">
                         <button className="register-button"
-                                onClick={(event) => this.handleClick(event)}
-                        >Register
+                                
+                        >Registration Closed
                         </button>
                     </div>
                     <div className="desktop-register">
                         <button className="register-button"
-                                onClick={(event) => this.handleClick(event)}
-                        >Register
+
+                        >Registration Closed
                         </button>
                     </div>
                 </header>
