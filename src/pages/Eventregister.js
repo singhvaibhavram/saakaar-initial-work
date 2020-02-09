@@ -26,7 +26,7 @@ class Eventregister extends React.Component {
     componentDidMount() {
         isLoadingExternally = true;
         superagent
-            .get("https://api.saakarcommunity.com/v0/city")
+            .get("https://api.saakaarcommunity.com/v0/city")
             .end((err, res) => {
                 if (!err) {
                     console.log(res);
@@ -83,7 +83,7 @@ class Eventregister extends React.Component {
         if (isValid) {
             e.preventDefault();
             superagent
-                .post("https://api.saakarcommunity.com/v0/register")
+                .post("https://api.saakaarcommunity.com/v0/register")
                 .send({"first_name": this.state.fname, "last_name": this.state.lname,"mobile_number": this.state.phnumber,"city_id": this.state.cityId,"age": this.state.age,"kids": this.state.kids})
                 .set('accept', 'json')
                 .set('access-Control-Allow-Origin', '*')
