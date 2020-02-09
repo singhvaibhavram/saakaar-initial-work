@@ -84,14 +84,7 @@ class Eventregister extends React.Component {
             e.preventDefault();
             superagent
                 .post("https://api.saakarcommunity.com/v0/register")
-                .send({
-                    "first_name": this.state.fname,
-                    "last_name": this.state.lname,
-                    "mobile_number": this.state.phnumber,
-                    "city_id": this.state.cityId,
-                    "age": this.state.age,
-                    "kids": this.state.kids
-                })
+                .send({"first_name": this.state.fname, "last_name": this.state.lname,"mobile_number": this.state.phnumber,"city_id": this.state.cityId,"age": this.state.age,"kids": this.state.kids})
                 .set('accept', 'json')
                 .set('access-Control-Allow-Origin', '*')
                 .end((err, res) => {
