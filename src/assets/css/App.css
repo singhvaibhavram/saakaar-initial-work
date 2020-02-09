@@ -87,3 +87,8 @@
   font-size: calc(10px + 2vmin);
   color: black;
 }
+
+.contentDiv {
+  margin : 20px;
+  margin-top: 500px
+}
